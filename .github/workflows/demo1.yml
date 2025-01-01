@@ -1,8 +1,16 @@
 name: Events Demo 1
 on:
   pull_request:
-    types: [opened, edited]
-  workflow_dispatch:
+    types:
+      - opened
+      - edited
+    branches: -- Targeted branch for the PR
+      - main
+  push:
+    branches:
+      - main
+    paths-ignore: -- If the files in this folder are updated, it will not run the action
+      - '.github/workflows/*'
 jobs:
   deploy:
     runs-on: ubuntu-latest
